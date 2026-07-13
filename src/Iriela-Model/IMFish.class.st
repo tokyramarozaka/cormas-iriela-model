@@ -14,7 +14,7 @@ IMFish >> initialize [
 IMFish >> pov [ 
 	<pov> 
 	^ CMPointOfView
-		image: IMImages fish
+		tile: IMTileset fish
 		size: 0.5
 ]
 

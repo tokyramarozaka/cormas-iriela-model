@@ -8,9 +8,9 @@ Class {
 { #category : 'control' }
 IMAgent >> move [ 
 	<action> 
-	self patch neighbourhood 
-		detect: [ :cell | cell hasResource ]
-		ifFound: [ :cell | self moveTo: cell ]
+	self cell neighbourhood 
+		detect: [ :c | cell hasResource ]
+		ifFound: [ :c | self moveTo: cell ]
 		ifNone: [ self moveRandomly ]
 ]
 
@@ -23,7 +23,7 @@ IMAgent >> moveRandomly [
 IMAgent >> pov [ 
 	<pov> 
 	^ CMPointOfView 
-		image: IMImages agent
+		tile: IMTileset agent
 		size: 0.8
 ]
 

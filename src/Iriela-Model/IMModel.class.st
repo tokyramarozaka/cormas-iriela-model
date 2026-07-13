@@ -1,11 +1,16 @@
 Class {
 	#name : 'IMModel',
-	#superclass : 'CMAbstractModel',
+	#superclass : 'CMModel',
 	#instVars : [
 		'cells',
 		'agents',
 		'woods',
-		'fishes'
+		'fishes',
+		'numberOfRows',
+		'numberOfColumns',
+		'numberOfAgents',
+		'numberOfWoods',
+		'numberOfFishes'
 	],
 	#classInstVars : [
 		'numberOfRows',
@@ -18,76 +23,6 @@ Class {
 	#package : 'Iriela-Model'
 }
 
-{ #category : 'initialization' }
-IMModel class >> initializeParameters [ 
-	super initializeParameters . 
-	numberOfRows := 5.
-	numberOfColumns := 5.
-	numberOfAgents := 5.
-	numberOfWoods := 2.
-	numberOfFishes := 2
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfAgents [
-
-	^ numberOfAgents
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfAgents: anObject [
-
-	numberOfAgents := anObject
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfColumns [
-
-	^ numberOfColumns
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfColumns: anObject [
-
-	numberOfColumns := anObject
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfFishes [
-
-	^ numberOfFishes
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfFishes: anObject [
-
-	numberOfFishes := anObject
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfRows [
-
-	^ numberOfRows
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfRows: anObject [
-
-	numberOfRows := anObject
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfWoods [
-
-	^ numberOfWoods
-]
-
-{ #category : 'accessing' }
-IMModel class >> numberOfWoods: anObject [
-
-	numberOfWoods := anObject
-]
-
 { #category : 'as yet unclassified' }
 IMModel class >> prefix [
 
@@ -95,23 +30,90 @@ IMModel class >> prefix [
 ]
 
 { #category : 'initialization' }
-IMModel >> init [ 
-	<init> 
-	self 
-		createGridNumberOfRows: self class numberOfRows
-		numberOfColumns:  self class numberOfColumns
-		neighbourhood: 4 
+IMModel >> init [
+
+	<init>
+	self
+		createGridNumberOfRows: self numberOfRows
+		numberOfColumns: self numberOfColumns
+		neighbourhood: 4
 		closed: true.
-		
-	self createN: self class numberOfWoods randomlyLocatedAloneEntities: IMWood .
-	self createN: self class numberOfFishes randomlyLocatedAloneEntities: IMFish .
-	self createN: self class numberOfAgents randomlyLocatedAloneEntities: IMAgent.
+
+	self
+		create: self numberOfWoods
+		randomlyLocatedAloneEntitiesOfClass: IMWood.
+	self
+		create: self numberOfFishes
+		randomlyLocatedAloneEntitiesOfClass: IMFish.
+	self
+		create: self numberOfAgents
+		randomlyLocatedAloneEntitiesOfClass: IMAgent
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfAgents [
+	<parameterIntegerMin: 0 max: 10 default: 5>
+	^ numberOfAgents
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfAgents: anObject [
+
+	numberOfAgents := anObject
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfColumns [
+	<parameterIntegerMin: 0 max: 10 default: 5>
+	^ numberOfColumns
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfColumns: anObject [
+
+	numberOfColumns := anObject
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfFishes [
+	<parameterIntegerMin: 0 max: 10 default: 2>
+	^ numberOfFishes
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfFishes: anObject [
+
+	numberOfFishes := anObject
 ]
 
 { #category : 'accessing' }
 IMModel >> numberOfRemainingWoods [ 
 	<probeNamed: 'Remaining woods' color: 'E5B80B'>
-	^ (self @@ IMWood) count: [ :each | each patch isNotNil ]
+	^ (self @@ IMWood) count: [ :each | each cell isNotNil ]
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfRows [
+	<parameterIntegerMin: 0 max: 10 default: 5>
+	^ numberOfRows
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfRows: anObject [
+
+	numberOfRows := anObject
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfWoods [
+	<parameterIntegerMin: 0 max: 10 default: 2>
+	^ numberOfWoods
+]
+
+{ #category : 'accessing' }
+IMModel >> numberOfWoods: anObject [
+
+	numberOfWoods := anObject
 ]
 
 { #category : 'initialization' }

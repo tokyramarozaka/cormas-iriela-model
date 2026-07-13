@@ -9,3 +9,12 @@ Class {
 IMCell >> hasResource [ 
 	^ (self hasOccupantsOfClass: IMWood) or: [self hasOccupantsOfClass: IMFish] 
 ]
+
+{ #category : 'accessing' }
+IMCell >> pov [
+	<pov>
+	^ CMPointOfView new
+		color: CMColor white;
+		borderColor: CMColor gray;
+		yourself
+]

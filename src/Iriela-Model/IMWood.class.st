@@ -14,7 +14,7 @@ IMWood >> initialize [
 IMWood >> pov [ 
 	<pov> 
 	^ CMPointOfView 
-		image: IMImages tree
+		tile: IMTileset tree
 		size: 0.5
 ]
 
