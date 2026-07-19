@@ -111,7 +111,7 @@ IMModel >> numberOfFishes: anObject [
 
 { #category : 'accessing' }
 IMModel >> numberOfOffices [
-
+	<parameterIntegerMin: 0 max: 10 default: 1>
 	^ numberOfOffices
 ]
 
@@ -123,7 +123,7 @@ IMModel >> numberOfOffices: anObject [
 
 { #category : 'accessing' }
 IMModel >> numberOfProtectedCells [
-
+	<parameterIntegerMin: 0 max: 10 default: 3>
 	^ numberOfProtectedCells
 ]
 
@@ -153,7 +153,7 @@ IMModel >> numberOfRows: anObject [
 
 { #category : 'accessing' }
 IMModel >> numberOfSacredCells [
-
+	<parameterIntegerMin: 0 max: 10 default: 3>
 	^ numberOfSacredCells
 ]
 

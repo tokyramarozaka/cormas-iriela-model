@@ -68,14 +68,22 @@ IMCell >> isSacred [
 IMCell >> pov [
 	<pov>
 	^ CMPointOfView new
-		color: CMColor white;
+		color: self povColor;
 		borderColor: CMColor gray;
 		yourself
+]
+
+{ #category : 'accessing' }
+IMCell >> povColor [ 
+	self isSacred ifTrue: [^CMColor red].
+	self isProtected ifTrue: [^CMColor yellow].
+	self isOffice ifTrue: [^CMColor blue].
+	^CMColor white.
 ]
 
 { #category : 'testing' }
 IMCell >> setState: aSymbol [
 	"Changes the state of the cell to a valid state, generates an error if the new state is invalid"
-	(#( #sacred #protected #normal ) includes: aSymbol) ifFalse: [ self error: 'Invalid cell state: ' , aSymbol ].
+	(#( #sacred #protected #normal #office) includes: aSymbol) ifFalse: [ self error: 'Invalid cell state: ' , aSymbol ].
 	state := aSymbol
 ]
